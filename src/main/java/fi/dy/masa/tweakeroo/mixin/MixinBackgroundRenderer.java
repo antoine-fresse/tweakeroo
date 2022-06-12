@@ -21,7 +21,7 @@ public abstract class MixinBackgroundRenderer
     private static boolean wasLava;
 
     @ModifyConstant(
-            method = "applyFog(Lnet/minecraft/client/render/Camera;Lnet/minecraft/client/render/BackgroundRenderer$FogType;FZ)V",
+            method = "applyFog(Lnet/minecraft/client/render/Camera;Lnet/minecraft/client/render/BackgroundRenderer$FogType;FZF)V",
             slice = @Slice(
                             from = @At(value = "FIELD", target = "Lnet/minecraft/entity/effect/StatusEffects;FIRE_RESISTANCE:Lnet/minecraft/entity/effect/StatusEffect;"),
                             to   = @At(value = "FIELD", target = "Lnet/minecraft/entity/effect/StatusEffects;BLINDNESS:Lnet/minecraft/entity/effect/StatusEffect;")),
@@ -40,7 +40,7 @@ public abstract class MixinBackgroundRenderer
     }
 
     @ModifyConstant(
-            method = "applyFog(Lnet/minecraft/client/render/Camera;Lnet/minecraft/client/render/BackgroundRenderer$FogType;FZ)V",
+            method = "applyFog(Lnet/minecraft/client/render/Camera;Lnet/minecraft/client/render/BackgroundRenderer$FogType;FZF)V",
             slice = @Slice(
                     from = @At(value = "FIELD", target = "Lnet/minecraft/entity/effect/StatusEffects;FIRE_RESISTANCE:Lnet/minecraft/entity/effect/StatusEffect;"),
                     to   = @At(value = "FIELD", target = "Lnet/minecraft/entity/effect/StatusEffects;BLINDNESS:Lnet/minecraft/entity/effect/StatusEffect;")),
@@ -90,7 +90,7 @@ public abstract class MixinBackgroundRenderer
     }
     */
 
-    @Inject(method = "applyFog(Lnet/minecraft/client/render/Camera;Lnet/minecraft/client/render/BackgroundRenderer$FogType;FZ)V",
+    @Inject(method = "applyFog(Lnet/minecraft/client/render/Camera;Lnet/minecraft/client/render/BackgroundRenderer$FogType;FZF)V",
             require = 0,
             at = @At(value = "INVOKE", remap = false,
                      target = "Lcom/mojang/blaze3d/systems/RenderSystem;setShaderFogEnd(F)V",
@@ -98,7 +98,7 @@ public abstract class MixinBackgroundRenderer
     private static void disableRenderDistanceFog(
             Camera camera,
             BackgroundRenderer.FogType fogType,
-            float viewDistance, boolean thickFog, CallbackInfo ci)
+            float viewDistance, boolean thickFog, float tickDelta, CallbackInfo ci)
     {
         if (Configs.Disable.DISABLE_RENDER_DISTANCE_FOG.getBooleanValue())
         {

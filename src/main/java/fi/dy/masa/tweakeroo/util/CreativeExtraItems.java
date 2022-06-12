@@ -60,23 +60,24 @@ public class CreativeExtraItems
 
     public static ItemStack parseItemFromString(String str)
     {
-        try
+       /* try
         {
-            ItemStringReader reader = new ItemStringReader(new StringReader(str), true);
-            reader.consume();
-            Item item = reader.getItem();
+            ItemStringReader.ItemResult result = ItemStringReader.item(registry, new StringReader(str))
+            //ItemStringReader reader = new ItemStringReader(new StringReader(str), true);
+            //reader.consume();
+            Item item = result.item();
 
             if (item != null)
             {
                 ItemStack stack = new ItemStack(item);
-                stack.setNbt(reader.getNbt());
+                stack.setNbt(result.nbt());
                 return stack;
             }
         }
         catch (Exception e)
         {
             Tweakeroo.logger.warn("Invalid item '{}'", str);
-        }
+        }*/
 
         return ItemStack.EMPTY;
     }

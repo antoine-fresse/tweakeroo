@@ -25,7 +25,7 @@ import net.minecraft.entity.player.PlayerEntity;
 import net.minecraft.item.map.MapState;
 import net.minecraft.text.ClickEvent;
 import net.minecraft.text.HoverEvent;
-import net.minecraft.text.LiteralText;
+import net.minecraft.text.Text;
 import net.minecraft.text.Style;
 import net.minecraft.util.ActionResult;
 import net.minecraft.util.Hand;
@@ -172,19 +172,19 @@ public class MiscUtils
         MinecraftClient mc = MinecraftClient.getInstance();
 
         double fov = Configs.Generic.ZOOM_FOV.getDoubleValue();
-        double origFov = mc.options.fov;
+        double origFov = mc.options.getFov().getValue();
 
         if (fov < origFov)
         {
             // Only store it once
             if (mouseSensitivity <= 0.0 || mouseSensitivity > 1.0)
             {
-                mouseSensitivity = mc.options.mouseSensitivity;
+                mouseSensitivity = mc.options.getMouseSensitivity().getValue();
             }
 
             double min = 0.04;
             double sens = min + (0.5 - min) * (1.0 - (origFov - fov) / origFov);
-            mc.options.mouseSensitivity = Math.min(mouseSensitivity, sens);
+            mc.options.getMouseSensitivity().setValue(Math.min(mouseSensitivity, sens));
         }
     }
 
@@ -192,7 +192,7 @@ public class MiscUtils
     {
         if (mouseSensitivity > 0.0)
         {
-            MinecraftClient.getInstance().options.mouseSensitivity = mouseSensitivity;
+            MinecraftClient.getInstance().options.getMouseSensitivity().setValue(mouseSensitivity);
             mouseSensitivity = -1.0;
         }
     }
@@ -225,12 +225,12 @@ public class MiscUtils
         String dim = mc.player.getEntityWorld().getRegistryKey().getValue().toString();
         String str = StringUtils.translate("tweakeroo.message.death_coordinates",
                                            pos.getX(), pos.getY(), pos.getZ(), dim);
-        LiteralText message = new LiteralText(str);
+        Text message = Text.of(str);
         Style style = message.getStyle();
         String coords = pos.getX() + " " + pos.getY() + " " + pos.getZ();
         style = style.withClickEvent(new ClickEvent(ClickEvent.Action.SUGGEST_COMMAND, coords));
-        style = style.withHoverEvent(new HoverEvent(HoverEvent.Action.SHOW_TEXT, new LiteralText(coords)));
-        message.setStyle(style);
+        style = style.withHoverEvent(new HoverEvent(HoverEvent.Action.SHOW_TEXT, Text.of(coords)));
+       // message.setStyle(style);
         mc.inGameHud.getChatHud().addMessage(message);
         Tweakeroo.logger.info(str);
     }
@@ -283,7 +283,7 @@ public class MiscUtils
 
                 if (guiLines != null)
                 {
-                    guiLines[i] = text.asString();
+                    guiLines[i] = text.getString();
                 }
             }
         }

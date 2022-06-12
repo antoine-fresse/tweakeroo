@@ -27,9 +27,10 @@ public abstract class MixinClientWorld extends World
                              Supplier<Profiler> profiler,
                              boolean isClient,
                              boolean debugWorld,
-                             long seed)
+                             long seed,
+                             int maxChainedNeighborUpdates)
     {
-        super(properties, registryRef, registryEntry, profiler, isClient, debugWorld, seed);
+        super(properties, registryRef, registryEntry, profiler, isClient, debugWorld, seed, maxChainedNeighborUpdates);
     }
 
     @Inject(method = "tickEntity", at = @At("HEAD"), cancellable = true)

@@ -17,6 +17,7 @@ import net.minecraft.client.network.ClientPlayerEntity;
 import net.minecraft.client.world.ClientWorld;
 import net.minecraft.entity.effect.StatusEffects;
 import net.minecraft.util.Hand;
+import net.minecraft.network.encryption.PlayerPublicKey;
 import fi.dy.masa.tweakeroo.config.Configs;
 import fi.dy.masa.tweakeroo.config.FeatureToggle;
 import fi.dy.masa.tweakeroo.util.CameraEntity;
@@ -36,9 +37,9 @@ public abstract class MixinClientPlayerEntity extends AbstractClientPlayerEntity
     private Input realInput;
     private float realNextNauseaStrength;
 
-    public MixinClientPlayerEntity(ClientWorld worldIn, GameProfile playerProfile)
+    public MixinClientPlayerEntity(ClientWorld worldIn, GameProfile playerProfile, PlayerPublicKey key)
     {
-        super(worldIn, playerProfile);
+        super(worldIn, playerProfile, key);
     }
 
     @Redirect(method = "updateNausea()V",

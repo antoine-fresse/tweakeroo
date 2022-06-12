@@ -15,7 +15,7 @@ import net.minecraft.item.Item;
 import net.minecraft.item.ItemConvertible;
 import net.minecraft.structure.StructureSet;
 import net.minecraft.text.Text;
-import net.minecraft.text.TranslatableText;
+//import net.minecraft.text.TranslatableText;
 import net.minecraft.util.Identifier;
 import net.minecraft.util.registry.Registry;
 import net.minecraft.util.registry.RegistryKey;
@@ -30,7 +30,7 @@ import fi.dy.masa.tweakeroo.util.MiscUtils;
 @Mixin(PresetsScreen.class)
 public abstract class MixinPresetsScreen
 {
-    @Shadow @Final static List<Object> PRESETS;
+    /*@Shadow @Final static List<Object> PRESETS;
 
     @Shadow
     private static void addPreset(Text presetName,
@@ -117,7 +117,7 @@ public abstract class MixinPresetsScreen
                 return false;
             }
 
-            addPreset(new TranslatableText(name), item, biome, ImmutableSet.of(), false, false, layers);
+            addPreset(new Text.translatable(name), item, biome, ImmutableSet.of(), false, false, layers);
 
             return true;
         }
@@ -127,5 +127,5 @@ public abstract class MixinPresetsScreen
         }
 
         return false;
-    }
+    }*/
 }

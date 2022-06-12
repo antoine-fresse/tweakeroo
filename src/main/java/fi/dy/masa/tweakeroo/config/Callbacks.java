@@ -147,15 +147,15 @@ public class Callbacks
         {
             this.mc = mc;
 
-            if (this.mc.options.gamma <= 1.0F)
+            if (this.mc.options.getGamma().getValue() <= 1.0F)
             {
-                Configs.Internal.GAMMA_VALUE_ORIGINAL.setDoubleValue(this.mc.options.gamma);
+                Configs.Internal.GAMMA_VALUE_ORIGINAL.setDoubleValue(this.mc.options.getGamma().getValue());
             }
 
             // If the feature is enabled on game launch, apply it here
             if (feature.getBooleanValue())
             {
-                this.mc.options.gamma = Configs.Generic.GAMMA_OVERRIDE_VALUE.getDoubleValue();
+               this.mc.options.getGamma().setValue(Configs.Generic.GAMMA_OVERRIDE_VALUE.getDoubleValue());
             }
         }
 
@@ -164,12 +164,12 @@ public class Callbacks
         {
             if (config.getBooleanValue())
             {
-                Configs.Internal.GAMMA_VALUE_ORIGINAL.setDoubleValue(this.mc.options.gamma);
-                this.mc.options.gamma = Configs.Generic.GAMMA_OVERRIDE_VALUE.getDoubleValue();
+                Configs.Internal.GAMMA_VALUE_ORIGINAL.setDoubleValue(this.mc.options.getGamma().getValue());
+                this.mc.options.getGamma().setValue(Configs.Generic.GAMMA_OVERRIDE_VALUE.getDoubleValue());
             }
             else
             {
-                this.mc.options.gamma = (float) Configs.Internal.GAMMA_VALUE_ORIGINAL.getDoubleValue();
+                this.mc.options.getGamma().setValue(Configs.Internal.GAMMA_VALUE_ORIGINAL.getDoubleValue());
             }
         }
     }

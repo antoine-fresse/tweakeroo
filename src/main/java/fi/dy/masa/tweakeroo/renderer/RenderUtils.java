@@ -12,7 +12,7 @@ import net.minecraft.enchantment.EnchantmentHelper;
 import net.minecraft.enchantment.Enchantments;
 import net.minecraft.entity.Entity;
 import net.minecraft.entity.LivingEntity;
-import net.minecraft.entity.passive.HorseBaseEntity;
+import net.minecraft.entity.passive.HorseEntity;
 import net.minecraft.entity.passive.VillagerEntity;
 import net.minecraft.entity.player.PlayerEntity;
 import net.minecraft.inventory.Inventory;
@@ -164,7 +164,7 @@ public class RenderUtils
             {
                 inv = ((VillagerEntity) entity).getInventory();
             }
-            else if (entity instanceof HorseBaseEntity)
+            else if (entity instanceof HorseEntity)
             {
                 inv = ((IMixinHorseBaseEntity) entity).getHorseInventory();
             }
@@ -177,7 +177,7 @@ public class RenderUtils
 
         if (inv != null && inv.size() > 0)
         {
-            final boolean isHorse = (entityLivingBase instanceof HorseBaseEntity);
+            final boolean isHorse = (entityLivingBase instanceof HorseEntity);
             final int totalSlots = isHorse ? inv.size() - 2 : inv.size();
             final int firstSlot = isHorse ? 2 : 0;
 

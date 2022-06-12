@@ -1,6 +1,6 @@
 package fi.dy.masa.tweakeroo.mixin;
 
-import java.util.Random;
+import net.minecraft.util.math.random.Random;
 import org.spongepowered.asm.mixin.Mixin;
 import org.spongepowered.asm.mixin.injection.At;
 import org.spongepowered.asm.mixin.injection.Inject;

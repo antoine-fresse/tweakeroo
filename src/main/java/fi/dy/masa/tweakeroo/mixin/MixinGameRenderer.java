@@ -44,7 +44,7 @@ public abstract class MixinGameRenderer
         }
     }
 
-    @Redirect(method = "renderWorld", require = 0, at = @At(value = "FIELD",
+    /*@Redirect(method = "renderWorld", require = 0, at = @At(value = "FIELD",
               target = "Lnet/minecraft/client/option/GameOptions;bobView:Z"))
     private boolean disableWorldViewBob(GameOptions options)
     {
@@ -54,9 +54,9 @@ public abstract class MixinGameRenderer
         }
 
         return options.bobView;
-    }
+    }*/
 
-    @Inject(method = "getFov", at = @At("HEAD"), cancellable = true)
+   /* @Inject(method = "getFov", at = @At("HEAD"), cancellable = true)
     private void applyZoom(Camera camera, float partialTicks, boolean useFOVSetting, CallbackInfoReturnable<Double> cir)
     {
         if (MiscUtils.isZoomActive())
@@ -67,7 +67,7 @@ public abstract class MixinGameRenderer
         {
             cir.setReturnValue(this.client.options.fov);
         }
-    }
+    }*/
 
     @Redirect(method = "updateTargetedEntity", at = @At(value = "INVOKE",
               target = "Lnet/minecraft/client/MinecraftClient;getCameraEntity()Lnet/minecraft/entity/Entity;"))

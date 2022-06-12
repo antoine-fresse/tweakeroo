@@ -34,7 +34,7 @@ public abstract class MixinClientPlayerInteractionManager
             value = "INVOKE",
             target = "Lnet/minecraft/client/network/ClientPlayerInteractionManager;syncSelectedSlot()V"),
             cancellable = true)
-    private void onProcessRightClickFirst(PlayerEntity player, World worldIn, Hand hand, CallbackInfoReturnable<ActionResult> cir)
+    private void onProcessRightClickFirst(PlayerEntity player, Hand hand, CallbackInfoReturnable<ActionResult> cir)
     {
         if (CameraUtils.shouldPreventPlayerInputs() ||
             PlacementTweaks.onProcessRightClickPre(player, hand))
@@ -52,7 +52,7 @@ public abstract class MixinClientPlayerInteractionManager
                                                "Lnet/minecraft/util/Hand;" +
                                                ")Lnet/minecraft/util/TypedActionResult;")),
             at = @At("RETURN"))
-    private void onProcessRightClickPost(PlayerEntity player, World worldIn, Hand hand, CallbackInfoReturnable<ActionResult> cir)
+    private void onProcessRightClickPost(PlayerEntity player, Hand hand, CallbackInfoReturnable<ActionResult> cir)
     {
         PlacementTweaks.onProcessRightClickPost(player, hand);
     }
